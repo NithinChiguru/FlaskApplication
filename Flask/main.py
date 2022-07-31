@@ -33,7 +33,7 @@ def index():
         else:
             messagebox.showerror("ERROR", "Username and email mismatch")
         cur.close()
-    return render_template("base.html")
+    return render_template("index.html")
 
 
 @app.route('/forgotpassword', methods=['GET', 'POST'])
