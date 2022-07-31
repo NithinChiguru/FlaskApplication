@@ -1,0 +1,1462 @@
+<!DOCTYPE html>
+<html lang="en">
+    <head>
+        <meta charset="UTF-8">
+        <title>TheEntertainaro's MULTIPLEX</title>
+        <link rel="icon" href="static/TheEntertainaro.png">
+
+        <script type="text/javascript">
+            var IdealTimeOut = 300;
+            var idleSecondsTimer = null;
+            var idleSecondsCounter = 0;
+            document.onclick = function () { idleSecondsCounter = 0; };
+            document.onmousemove = function () { idleSecondsCounter = 0; };
+            document.onkeypress = function () { idleSecondsCounter = 0; };
+            idleSecondsTimer = window.setInterval(CheckIdleTime, 1000);
+
+            function CheckIdleTime()
+            {
+                idleSecondsCounter++;
+                var oPanel = document.getElementById("timeOut");
+                if (oPanel)
+                {
+                    oPanel.innerHTML = (IdealTimeOut - idleSecondsCounter);
+                }
+                if (idleSecondsCounter >= IdealTimeOut)
+                {
+                    window.clearInterval(idleSecondsTimer);
+                    alert("Your Session has expired. Please login again.");
+                    window.location = "http://127.0.0.1:5000/login";
+                }
+            }
+        </script>
+
+    </head>
+
+    <style>
+        html
+        {
+            scroll-behavior: smooth;
+        }
+
+        *
+        {
+            box-sizing: border-box;
+        }
+
+        body
+        {
+            background-color: #040714;
+            color: #f9f9f9;
+            font-family: Avenir-Roman, sans-serif;
+            margin: 0;
+            padding: 0;
+        }
+
+        a
+        {
+            color: #f9f9f9;
+            text-decoration: none;
+        }
+
+        nav
+        {
+            position: fixed;
+            top: 0;
+            left: 0;
+            right: 0;
+            height: 70px;
+            background-color: #090b13;
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            padding: 0 36px;
+            letter-spacing: 16px;
+            z-index: 3;
+        }
+
+        .navLogo
+        {
+            padding: 0;
+            width: 80px;
+            margin-top: 4px;
+            max-height: 70px;
+            font-size: 0;
+            display: inline-block;
+        }
+
+        .navLogo img
+        {
+            display: block;
+            width: 100%;
+        }
+
+        .login
+        {
+            background-color: rgba(0, 0, 0, 0.6);
+            padding: 8px 16px;
+            text-transform: uppercase;
+            letter-spacing: 1.5px;
+            border: 1px solid #f9f9f9;
+            border-radius: 4px;
+            transition: all .2s ease 0s;
+        }
+
+        .login:hover
+        {
+            background-color: #f9f9f9;
+            color: #000;
+            border-color: transparent;
+        }
+
+        .landing
+        {
+            overflow: hidden;
+            display: flex;
+            flex-direction: column;
+            text-align: center;
+            height: 100vh;
+        }
+
+        .landingContent
+        {
+            margin-bottom: 10vw;
+            width: 100%;
+            position: relative;
+            min-height: 100vh;
+            box-sizing: border-box;
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            flex-direction: column;
+            padding: 80px 40px;
+            height: 100%;
+        }
+
+        .landingBgImg
+        {
+            height: 100%;
+            background-position: top;
+            background-size: cover;
+            background-repeat: no-repeat;
+            background-image: url("static/login-background.jpg");
+            position: absolute;
+            top: 0;
+            right: 0;
+            left: 0;
+            z-index: -1;
+        }
+
+        .cta
+        {
+            max-width: 650px;
+            display: flex;
+            flex-direction: column;
+            width: 100%;
+        }
+
+        .ctaLogoOne
+        {
+            margin-bottom: 12px;
+            max-width: 600px;
+            min-height: 1px;
+            display: block;
+            width: 100%;
+        }
+
+        .landingSignUp
+        {
+            font-weight: bold;
+            color: #f9f9f9;
+            background-color: #0063e5;
+            margin-bottom: 12px;
+            width: 100%;
+            letter-spacing: 1.5px;
+            font-size: 18px;
+            padding: 16.5px 0;
+            border: 1px solid transparent;
+            border-radius: 4px;
+        }
+
+        .landingSignUp:hover
+        {
+            background-color: #0483ee;
+        }
+
+        .landingDescription
+        {
+            color: hsla(0, 0%, 95.3%, 1);
+            font-size: 11px;
+            margin: 0 0 24px;
+            line-height: 1.5;
+            letter-spacing: 1.5px;
+        }
+
+        .ctaLogoTwo
+        {
+            max-width: 600px;
+            margin-bottom: 20px;
+            display: inline-block;
+            vertical-align: bottom;
+            width: 100%;
+        }
+
+        @media only screen and (min-width: 768px)
+        {
+            body
+            {
+                font-size: 16px;
+            }
+        }
+
+        @media only screen and (min-width: 480px) and (max-width: 768px)
+        {
+            body
+            {
+                font-size: 15px;
+            }
+        }
+
+        @media only screen and (max-width: 479px)
+        {
+            body
+            {
+                font-size: 14px;
+            }
+        }
+
+        html
+        {
+            scroll-behavior: smooth;
+        }
+
+        *
+        {
+            box-sizing: border-box;
+        }
+
+        body
+        {
+            background-color: #040714;
+            color: #f9f9f9;
+            font-family: Avenir-Roman, sans-serif;
+            margin: 0;
+            padding: 0;
+        }
+
+        a
+        {
+            color: #f9f9f9;
+            text-decoration: none;
+        }
+
+        nav
+        {
+            position: fixed;
+            top: 0;
+            left: 0;
+            right: 0;
+            height: 70px;
+            background-color: #090b13;
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            padding: 0 36px;
+            letter-spacing: 16px;
+            z-index: 3;
+        }
+
+        .navLogo
+        {
+            padding: 0;
+            width: 80px;
+            margin-top: 4px;
+            max-height: 70px;
+            font-size: 0;
+            display: inline-block;
+        }
+
+        .navLogo img
+        {
+            display: block;
+            width: 100%;
+        }
+
+        .navMenu
+        {
+            align-items: center;
+            display: flex;
+            flex-flow: row nowrap;
+            height: 100%;
+            justify-content: flex-end;
+            margin: 0;
+            padding: 0;
+            position: relative;
+            margin-right: auto;
+            margin-left: 25px;
+        }
+
+        .navMenu a
+        {
+            display: flex;
+            align-items: center;
+            padding: 0 12px;
+        }
+
+        .navMenu a img
+        {
+            height: 20px;
+            min-width: 20px;
+            width: 20px;
+            z-index: auto;
+        }
+
+        .navMenu a span
+        {
+            color: rgb(249, 249, 249);
+            font-size: 13px;
+            letter-spacing: 1.42px;
+            line-height: 1.08;
+            padding: 2px 0px;
+            white-space: nowrap;
+            position: relative;
+        }
+
+        .footer-body
+        {
+            width: 90%;
+            margin: auto;
+            display: flex;
+            justify-content: space-around;
+        }
+
+        .footer-logo
+        {
+            height: 12vh;
+            background-color: #FEC53A;
+            color: #000;
+            line-height: 1.7rem;
+        }
+
+        ul h3
+        {
+            color: #fff;
+            font-weight: 450;
+        }
+
+        ul li
+        {
+            list-style: none;
+            line-height: 2.5rem;
+        }
+
+        ul li a
+        {
+            text-decoration: none;
+            color: #fff;
+        }
+
+        ul li a .fab
+        {
+            font-size: 1.2rem;
+            color: #FEC53A;
+            margin-right: 15px;
+        }
+
+        ul li a:hover
+        {
+            color: #FEC53A;
+        }
+
+        .footer-bottom
+        {
+            width: 100%;
+            height: 7vh;
+            background: #1B1919;
+            color: #fff;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            font-size: 0.875rem;
+        }
+
+        .footer-bottom span
+        {
+            color: #FEC53A;
+            font-weight: bold;
+        }
+
+        .navMenu a span::before
+        {
+            background-color: rgb(249, 249, 249);
+            border-radius: 0px 0px 4px 4px;
+            bottom: -6px;
+            content: "";
+            height: 2px;
+            left: 0px;
+            opacity: 0;
+            position: absolute;
+            right: 0px;
+            transform-origin: left center;
+            transform: scaleX(0);
+            transition: all 250ms cubic-bezier(0.25, 0.46, 0.45, 0.94) 0s;
+            visibility: hidden;
+            width: auto;
+        }
+
+        .navMenu a:hover span::before
+        {
+            transform: scaleX(1);
+            visibility: visible;
+            opacity: 1 !important;
+        }
+        .signOut
+        {
+            position: relative;
+            height: 48px;
+            width: 48px;
+            display: flex;
+            cursor: pointer;
+            align-items: center;
+            justify-content: center;
+        }
+
+        .signOut .userImg
+        {
+            border-radius: 50%;
+            width: 100%;
+            height: 100%;
+        }
+
+        .signOut .dropDown
+        {
+            position: absolute;
+            top: 48px;
+            right: 0;
+            background: rgb(19, 19, 19);
+            border: 1px solid rgba(151, 151, 151, 0.34);
+            border-radius: 4px;
+            box-shadow: rgb(0 0 0 / 50%) 0px 0px 18px 0px;
+            padding: 10px;
+            font-size: 14px;
+            letter-spacing: 3px;
+            width: 100px;
+            opacity: 0;
+        }
+
+        .signOut:hover .dropDown
+        {
+            opacity: 1;
+            width: 100px;
+            transition-duration: 1s;
+        }
+
+        main
+        {
+            position: relative;
+            min-height: calc(100vh - 250px);
+            overflow-x: hidden;
+            display: block;
+            top: 72px;
+            padding: 0 calc(3.5vw + 5px);
+        }
+
+        main::after
+        {
+            background: url("static/home-background.png") center center / cover no-repeat fixed;
+            content: "";
+            position: absolute;
+            inset: 0px;
+            opacity: 1;
+            z-index: -1;
+        }
+
+        .carousel
+        {
+            background: transparent;
+            height: 100%;
+            margin: 0 -4.6875vw;
+        }
+
+        .carousel button
+        {
+            opacity: 0;
+            height: 25px;
+            width: 25px;
+            z-index: 1;
+        }
+
+        .carousel button:hover
+        {
+            opacity: 1;
+            transition: opacity 0.2s ease 0s;
+        }
+
+        .carousel ol li
+        {
+            background: rgb(150, 158, 171) !important;
+        }
+
+        .carousel ol .is-selected
+        {
+            background: white !important;
+        }
+
+        .carousel-cell
+        {
+            width: 90%;
+            border-radius: 4px;
+            cursor: pointer;
+            position: relative;
+            counter-increment: gallery-cell;
+        }
+
+        .carousel-cell a
+        {
+            border-radius: 4px;
+            box-shadow: rgb(0 0 0 / 69%) 0px 26px 30px -10px, rgb(0 0 0 / 73%) 0px 16px 10px -10px;
+            cursor: pointer;
+            display: block;
+            position: relative;
+            padding: 4px;
+        }
+
+        .carousel-cell a img
+        {
+            width: 100%;
+            height: 100%;
+        }
+
+        .carousel-cell a:hover
+        {
+            padding: 0;
+            border: 4px solid rgba(249, 249, 249, 0.8);
+            transition-duration: 300ms;
+        }
+
+        .viewers
+        {
+            margin-top: 30px;
+            padding: 30px 0px 26px;
+            display: grid;
+            grid-gap: 25px;
+            gap: 25px;
+            grid-template-columns: repeat(5, minmax(0, 1fr));
+        }
+
+        .viewerWrap
+        {
+            padding-top: 56.25%;
+            border-radius: 10px;
+            box-shadow: rgb(0 0 0 / 69%) 0px 26px 30px -10px, rgb(0 0 0 / 73%) 0px 16px 10px -10px;
+            cursor: pointer;
+            overflow: hidden;
+            position: relative;
+            transition: all 250ms cubic-bezier(0.25, 0.46, 0.45, 0.94) 0s;
+            border: 3px solid rgba(249, 249, 249, 0.1);
+        }
+
+        .viewerWrap img
+        {
+            inset: 0px;
+            display: block;
+            height: 100%;
+            object-fit: cover;
+            opacity: 1;
+            position: absolute;
+            transition: opacity 500ms ease-in-out 0s;
+            width: 100%;
+            z-index: 1;
+            top: 0;
+        }
+
+        .viewerWrap video
+        {
+            width: 100%;
+            height: 100%;
+            position: absolute;
+            top: 0px;
+            opacity: 0;
+            z-index: 0;
+        }
+
+        .viewerWrap:hover
+        {
+            box-shadow: rgb(0 0 0 / 69%) 0px 26px 30px -10px, rgb(0 0 0 / 73%) 0px 16px 10px -10px;
+            transform: scale(1.05);
+            border-color: rgba(249, 249, 249, 0.8);
+        }
+
+        .viewerWrap:hover video
+        {
+            opacity: 1;
+        }
+
+        .recommends
+        {
+            padding: 0 0 26px;
+        }
+
+        .recommendedContent
+        {
+            display: grid;
+            grid-gap: 25px;
+            gap: 25px;
+            grid-template-columns: repeat(4, minmax(0, 1fr));
+        }
+
+        .recWrap
+        {
+            padding-top: 56.25%;
+            border-radius: 10px;
+            box-shadow: rgb(0 0 0 / 69%) 0px 26px 30px -10px, rgb(0 0 0 / 73%) 0px 16px 10px -10px;
+            cursor: pointer;
+            overflow: hidden;
+            position: relative;
+            transition: all 250ms cubic-bezier(0.25, 0.46, 0.45, 0.94) 0s;
+            border: 3px solid rgba(249, 249, 249, 0.1);
+        }
+
+        .recWrap img
+        {
+            inset: 0px;
+            display: block;
+            height: 100%;
+            object-fit: cover;
+            opacity: 1;
+            position: absolute;
+            transition: opacity 500ms ease-in-out 0s;
+            width: 100%;
+            z-index: 1;
+            top: 0;
+        }
+
+        .recWrap:hover
+        {
+            box-shadow: rgb(0 0 0 / 69%) 0px 26px 30px -10px, rgb(0 0 0 / 73%) 0px 16px 10px -10px;
+            transform: scale(1.05);
+            border-color: rgba(249, 249, 249, 0.8);
+        }
+
+        @media only screen and (min-width: 768px)
+        {
+            body
+            {
+                font-size: 16px;
+            }
+        }
+
+        @media only screen and (min-width: 480px) and (max-width: 768px)
+        {
+            body
+            {
+                font-size: 15px;
+            }
+
+            .viewers
+            {
+                grid-template-columns: repeat(1, minmax(0, 1fr));
+            }
+
+            .recommendedContent
+            {
+                grid-template-columns: repeat(2, minmax(0, 1fr));
+            }
+        }
+
+        @media only screen and (max-width: 479px)
+        {
+            body
+            {
+                font-size: 14px;
+            }
+
+            .viewers
+            {
+                grid-template-columns: repeat(1, minmax(0, 1fr));
+            }
+
+            .recommendedContent
+            {
+                grid-template-columns: repeat(2, minmax(0, 1fr));
+            }
+        }
+
+        html
+        {
+            scroll-behavior: smooth;
+        }
+
+        *
+        {
+            box-sizing: border-box;
+        }
+
+        body
+        {
+            background-color: #040714;
+            color: #f9f9f9;
+            font-family: Avenir-Roman, sans-serif;
+            margin: 0;
+            padding: 0;
+        }
+
+        a
+        {
+            color: #f9f9f9;
+            text-decoration: none;
+        }
+
+        nav
+        {
+            position: fixed;
+            top: 0;
+            left: 0;
+            right: 0;
+            height: 70px;
+            background-color: #090b13;
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            padding: 0 36px;
+            letter-spacing: 16px;
+            z-index: 3;
+        }
+
+        .navLogo
+        {
+            padding: 0;
+            width: 80px;
+            margin-top: 4px;
+            max-height: 70px;
+            font-size: 0;
+            display: inline-block;
+        }
+
+        .navLogo img
+        {
+            display: block;
+            width: 100%;
+        }
+
+        .navMenu
+        {
+            align-items: center;
+            display: flex;
+            flex-flow: row nowrap;
+            height: 100%;
+            justify-content: flex-end;
+            margin: 0;
+            padding: 0;
+            position: relative;
+            margin-right: auto;
+            margin-left: 25px;
+        }
+
+        .navMenu a
+        {
+            display: flex;
+            align-items: center;
+            padding: 0 12px;
+        }
+
+        .navMenu a img
+        {
+            height: 20px;
+            min-width: 20px;
+            width: 20px;
+            z-index: auto;
+        }
+
+        .navMenu a span
+        {
+            color: rgb(249, 249, 249);
+            font-size: 13px;
+            letter-spacing: 1.42px;
+            line-height: 1.08;
+            padding: 2px 0px;
+            white-space: nowrap;
+            position: relative;
+        }
+
+        .navMenu a span::before
+        {
+            background-color: rgb(249, 249, 249);
+            border-radius: 0px 0px 4px 4px;
+            bottom: -6px;
+            content: "";
+            height: 2px;
+            left: 0px;
+            opacity: 0;
+            position: absolute;
+            right: 0px;
+            transform-origin: left center;
+            transform: scaleX(0);
+            transition: all 250ms cubic-bezier(0.25, 0.46, 0.45, 0.94) 0s;
+            visibility: hidden;
+            width: auto;
+        }
+
+        .navMenu a:hover span::before
+        {
+            transform: scaleX(1);
+            visibility: visible;
+            opacity: 1 !important;
+        }
+
+
+        .detail
+        {
+            position: relative;
+            min-height: calc(100vh-250px);
+            overflow-x: hidden;
+            display: block;
+            top: 72px;
+            padding: 0 calc(3.5vw + 5px);
+        }
+
+        .detailBgImg
+        {
+            left: 0px;
+            opacity: 0.8;
+            position: fixed;
+            right: 0px;
+            top: 0px;
+            z-index: -1;
+        }
+
+        .detailBgImg img
+        {
+            width: 100vw;
+            height: 100vh;
+        }
+
+        .detailImgTitle
+        {
+            align-items: flex-end;
+            display: flex;
+            -webkit-box-pack: start;
+            justify-content: flex-start;
+            margin: 0px auto;
+            height: 30vw;
+            min-height: 170px;
+            padding-bottom: 24px;
+            width: 100%;
+        }
+
+        .detailImgTitle img
+        {
+            max-width: 600px;
+            min-width: 200px;
+            width: 35vw;
+        }
+
+        .contentMeta
+        {
+            max-width: 874px;
+        }
+
+        .controls
+        {
+            align-items: center;
+            display: flex;
+            flex-flow: row nowrap;
+            margin: 24px 0px;
+            min-height: 56px;
+        }
+
+        .player,
+        .trailer
+        {
+            font-size: 15px;
+            margin: 0px 22px 0px 0px;
+            padding: 0px 24px;
+            height: 56px;
+            border-radius: 4px;
+            cursor: pointer;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            letter-spacing: 1.8px;
+            text-align: center;
+            text-transform: uppercase;
+            background: rgb (249, 249, 249);
+            border: none;
+            color: rgb(0, 0, 0);
+        }
+
+        .player img,
+        .trailer img
+        {
+            width: 32px;
+        }
+
+        .player:hover,
+        .trailer:hover
+        {
+            background: rgb(198, 198, 198);
+        }
+
+        .trailer
+        {
+            background: rgba(0, 0, 0, 0.3);
+            border: 1px solid rgb(249, 249, 249);
+            color: rgb(249, 249, 249);
+        }
+
+        .addList
+        {
+            margin-right: 16px;
+            height: 44px;
+            width: 44px;
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            background-color: rgba(0, 0, 0, 0.6);
+            border-radius: 50%;
+            border: 2px solid white;
+            cursor: pointer;
+        }
+
+        .addList span
+        {
+            background-color: rgb(249, 249, 249);
+            display: inline-block;
+        }
+
+        .addList span:first-child
+        {
+            height: 2px;
+            transform: translate(1px, 0px) rotate(0deg);
+            width: 16px;
+        }
+
+        .addList span:nth-child(2)
+        {
+            height: 16px;
+            transform: translateX(-8px) rotate(0deg);
+            width: 2px;
+        }
+
+        .groupWatch
+        {
+            height: 44px;
+            width: 44px;
+            border-radius: 50%;
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            cursor: pointer;
+            background: white;
+        }
+
+        .groupWatch div
+        {
+            height: 40px;
+            width: 40px;
+            background: rgb(0, 0, 0);
+            border-radius: 50%;
+        }
+
+        .groupWatch div img
+         {
+            width: 100%;
+        }
+
+        .subTitle
+        {
+            color: rgb(249, 249, 249);
+            font-size: 15px;
+            min-height: 20px;
+        }
+
+        .description
+        {
+            line-height: 1.4;
+            font-size: 20px;
+            padding: 16px 0px;
+            color: rgb(249, 249, 249);
+        }
+
+        @media only screen and (min-width: 768px)
+        {
+            body
+            {
+                font-size: 16px;
+            }
+        }
+
+        @media only screen and (min-width: 480px) and (max-width: 768px)
+        {
+            body
+            {
+                font-size: 15px;
+            }
+
+            .detalBgImg img
+             {
+                width: initial;
+            }
+
+            .player,
+            .trailer
+            {
+                height: 45px;
+                padding: 0px 12px;
+                font-size: 12px;
+                margin: 0px 10px 0px 0px;
+            }
+
+            .player img,
+            .trailer img
+            {
+                width: 25px;
+            }
+
+            .subTitle
+            {
+                font-size: 12px;
+            }
+
+            .description
+            {
+                font-size: 14px;
+            }
+        }
+
+        @media only screen and (max-width: 479px)
+         {
+            body
+            {
+                font-size: 14px;
+            }
+
+            .detalBgImg img
+            {
+                width: initial;
+            }
+
+            .player,
+            .trailer
+            {
+                height: 45px;
+                padding: 0px 12px;
+                font-size: 12px;
+                margin: 0px 10px 0px 0px;
+            }
+
+            .player img,
+            .trailer img
+            {
+                width: 25px;
+            }
+
+            .subTitle
+            {
+                font-size: 12px;
+            }
+
+            .description
+            {
+                font-size: 14px;
+            }
+        }
+        .flickity-enabled
+        {
+          position: relative;
+        }
+
+        .flickity-enabled:focus { outline: none; }
+
+        .flickity-viewport
+        {
+          overflow: hidden;
+          position: relative;
+          height: 100%;
+        }
+
+        .flickity-slider
+        {
+          position: absolute;
+          width: 100%;
+          height: 100%;
+        }
+
+        /* draggable */
+
+        .flickity-enabled.is-draggable
+        {
+          -webkit-tap-highlight-color: transparent;
+          -webkit-user-select: none;
+             -moz-user-select: none;
+              -ms-user-select: none;
+                  user-select: none;
+        }
+
+        .flickity-enabled.is-draggable .flickity-viewport
+        {
+          cursor: move;
+          cursor: -webkit-grab;
+          cursor: grab;
+        }
+
+        .flickity-enabled.is-draggable .flickity-viewport.is-pointer-down
+        {
+          cursor: -webkit-grabbing;
+          cursor: grabbing;
+        }
+
+        /* ---- flickity-button ---- */
+
+        .flickity-button
+        {
+          position: absolute;
+          background: hsla(0, 0%, 100%, 0.75);
+          border: none;
+          color: #333;
+        }
+
+        .flickity-button:hover
+        {
+          background: white;
+          cursor: pointer;
+        }
+
+        .flickity-button:focus
+        {
+          outline: none;
+          box-shadow: 0 0 0 5px #19F;
+        }
+
+        .flickity-button:active
+        {
+          opacity: 0.6;
+        }
+
+        .flickity-button:disabled
+        {
+          opacity: 0.3;
+          cursor: auto;
+          /* prevent disabled button from capturing pointer up event. #716 */
+          pointer-events: none;
+        }
+
+        .flickity-button-icon
+        {
+          fill: currentColor;
+        }
+
+        /* ---- previous/next buttons ---- */
+
+        .flickity-prev-next-button
+        {
+          top: 50%;
+          width: 44px;
+          height: 44px;
+          border-radius: 50%;
+          /* vertically center */
+          transform: translateY(-50%);
+        }
+
+        .flickity-prev-next-button.previous { left: 10px; }
+        .flickity-prev-next-button.next { right: 10px; }
+
+        .flickity-rtl .flickity-prev-next-button.previous
+        {
+          left: auto;
+          right: 10px;
+        }
+
+        .flickity-rtl .flickity-prev-next-button.next
+        {
+          right: auto;
+          left: 10px;
+        }
+
+        .flickity-prev-next-button .flickity-button-icon
+        {
+          position: absolute;
+          left: 20%;
+          top: 20%;
+          width: 60%;
+          height: 60%;
+        }
+
+
+        .flickity-page-dots
+        {
+          position: absolute;
+          width: 100%;
+          bottom: -25px;
+          padding: 0;
+          margin: 0;
+          list-style: none;
+          text-align: center;
+          line-height: 1;
+        }
+
+        .flickity-rtl .flickity-page-dots { direction: rtl; }
+
+        .flickity-page-dots .dot
+        {
+          display: inline-block;
+          width: 10px;
+          height: 10px;
+          margin: 0 8px;
+          background: #333;
+          border-radius: 50%;
+          opacity: 0.25;
+          cursor: pointer;
+        }
+
+        .flickity-page-dots .dot.is-selected
+        {
+          opacity: 1;
+        }
+    </style>
+    <body>
+        <nav>
+            <a class="navLogo" href="/TheEntertainaroMultiplex">
+                <img src="static/TheEntertainaro.png" alt="TheEntertainaroMultiplex" />
+            </a>
+            <div class="navMenu">
+                <a href="/TheEntertainaroMultiplex">
+                    <img src="static/home-icon.svg" alt="HOME" />
+                    <span>HOME</span>
+                </a>
+                <a>
+                    <img src="static/search-icon.svg" alt="SEARCH" />
+                    <span>SEARCH</span>
+                </a>
+                <a>
+                    <img src="static/watchlist-icon.svg" alt="WATCHLIST" />
+                    <span>WATCHLIST</span>
+                </a>
+                <a>
+                    <img src="static/original-icon.svg" alt="ORIGINALS" />
+                    <span>ORIGINALS</span>
+                </a>
+                <a>
+                    <img src="static/movie-icon.svg" alt="MOVIES" />
+                    <span>MOVIES</span>
+                </a>
+                <a>
+                    <img src="static/series-icon.svg" alt="SERIES" />
+                    <span>SERIES</span>
+                </a>
+            </div>
+            <div class="signOut">
+                <img class="userImg" src="static/pic1.png" alt="avatar" />
+                <div class="dropDown">
+                    <a href="/login">Log Out</a>
+                </div>
+
+            </div>
+        </nav>
+
+        <main>
+            <div class="carousel" data-flickity='{ "wrapAround": true, "autoPlay": true }'>
+                <div class="carousel-cell">
+                    <a>
+                        <img src="static/bheemla nayak.jpg" alt="slider-badging" />
+                    </a>
+                </div>
+                <div class="carousel-cell">
+                    <a>
+                        <img src="static/standuprahul.jpg" alt="slider-badging" />
+                    </a>
+                </div>
+                <div class="carousel-cell">
+                    <a>
+                        <img src="static/DJtillu.jpeg" alt="slider-badging" />
+                    </a>
+                </div>
+                <div class="carousel-cell">
+                    <a>
+                        <img src="static/kids.jpg" alt="slider-badging" />
+                    </a>
+                </div>
+                <div class="carousel-cell">
+                    <a>
+                        <img src="static/kids2.jpg" alt="slider-badging" />
+                    </a>
+                </div>
+            </div>
+
+
+            <div class="viewers">
+                <div class="viewerWrap">
+                    <img src="static/viewers-disney.png" alt='' />
+                    <video autoPlay={true} loop={true} playsInline={true} muted={true}>
+                        <source src="static/1564674844-disney.mp4" type="video/mp4" />
+                    </video>
+                </div>
+
+                <div class="viewerWrap">
+                    <img src="static/aha.png" alt='' />
+                    <video autoPlay={true} loop={true} playsInline={true} muted={true}>
+                        <source src="static/1564676714-pixar.mp4" type="video/mp4" />
+                    </video>
+                </div>
+
+                <div class="viewerWrap">
+                    <img src="static/prime.png" alt='' />
+                    <video autoPlay={true} loop={true} playsInline={true} muted={true}>
+                        <source src="static/1564676115-marvel.mp4" type="video/mp4" />
+                    </video>
+                </div>
+
+                <div class="viewerWrap">
+                    <img src="static/netflix.png" alt='' />
+                    <video autoPlay={true} loop={true} playsInline={true} muted={true}>
+                        <source src="static/1608229455-star-wars.mp4" type="video/mp4" />
+                    </video>
+                </div>
+
+                <div class="viewerWrap">
+                    <img src="static/viewers-national.png" alt='' />
+                    <video autoPlay={true} loop={true} playsInline={true} muted={true}>
+                        <source
+                            src="static/1564676296-national-geographic.mp4"
+                            type="video/mp4"
+                        />
+                    </video>
+                </div>
+                &nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp
+
+                <div class="viewerWrap">
+                    <img src="static/sonyliv.png" alt='' />
+                    <video autoPlay={true} loop={true} playsInline={true} muted={true}>
+                        <source src="static/1564674844-disney.mp4" type="video/mp4" />
+                    </video>
+                </div>
+
+                <div class="viewerWrap">
+                    <img src="static/zee5.png" alt='' />
+                    <video autoPlay={true} loop={true} playsInline={true} muted={true}>
+                        <source src="static/1608229455-star-wars.mp4" type="video/mp4" />
+                    </video>
+                </div>
+
+                <div class="viewerWrap">
+                    <img src="static/TheEntertainaroOriginals.png" alt='' />
+                    <video autoPlay={true} loop={true} playsInline={true} muted={true}>
+                        <source src="static/1564676115-marvel.mp4" type="video/mp4" />
+                    </video>
+                </div>
+
+            </div>
+
+            <div class="recommends">
+                <h4>Recommended for You</h4>
+                <div class="recommendedContent">
+                    <div class="recWrap">
+                        <a href="/TheEntertainaroMultiplexScreen">
+                            <img src="https://prod-ripcut-delivery.disney-plus.net/v1/variant/disney/87F1DCF36049558159913ADFD18A800DE1121771540033EC3A7651B8FE154CEB/scale?width=400&aspectRatio=1.78&format=jpeg" alt="Inside Out" />
+                        </a>
+                    </div>
+                    <div class="recWrap">
+                        <a href="/TheEntertainaroMultiplexScreen">
+                            <img src="https://prod-ripcut-delivery.disney-plus.net/v1/variant/disney/706C68FF1CEA5A9C2AE0608892C2DF79E4AC1F0DDB4BFF7FE6DAFC36DAFC0286/scale?width=400&aspectRatio=1.78&format=jpeg" alt="Bao" />
+                        </a>
+                    </div>
+                    <div class="recWrap">
+                        <a href="/TheEntertainaroMultiplexScreen">
+                            <img src="https://prod-ripcut-delivery.disney-plus.net/v1/variant/disney/C0A883EAB54DDDC924018D08CF4555EE72B3E9A8C214BDADF29CB82B5E2275D7/scale?width=400&aspectRatio=1.78&format=jpeg" alt="Incredibles 2" />
+                        </a>
+                    </div>
+                    <div class="recWrap">
+                        <a href="/TheEntertainaroMultiplexScreen">
+                            <img src="https://prod-ripcut-delivery.disney-plus.net/v1/variant/disney/01666FAA085FF29B709DB13975E563E5E047DAAFF7D8F331201CB73F3C30027E/scale?width=400&aspectRatio=1.78&format=jpeg" alt="Auntie EDNA" />
+                        </a>
+                    </div>
+                </div>
+            </div>
+
+            <div class="recommends">
+                <h4>New to TheEntertainaroMultiplex</h4>
+                <div class="recommendedContent">
+                    <div class="recWrap">
+                        <a href="/TheEntertainaroMultiplexScreen">
+                            <img src="https://prod-ripcut-delivery.disney-plus.net/v1/variant/disney/B983FF22BA64B6E19E0D3267280819B26758CFB765E8BED1099D11E320612953/scale?width=400&aspectRatio=1.78&format=jpeg" alt="A tail of two kitties" />
+                        </a>
+                    </div>
+                    <div class="recWrap">
+                        <a href="/TheEntertainaroMultiplexScreen">
+                            <img src="https://prod-ripcut-delivery.disney-plus.net/v1/variant/disney/1E0501AFBAFCA1ABB5D31DBA7D1A913B2A35D70FD3DFD804939B71901577161D/scale?width=400&aspectRatio=1.78&format=jpeg" alt="Raya" />
+                        </a>
+                    </div>
+                    <div class="recWrap">
+                        <a href="/TheEntertainaroMultiplexScreen">
+                            <img src="https://prod-ripcut-delivery.disney-plus.net/v1/variant/disney/341AE85B6C1423B9042B5F2E786645EE551B9D546C3D263B220A4727617FD2B8/badging?width=400&aspectRatio=1.78&format=jpeg&label=originals" alt="The falcon and the winter soldier" />
+                        </a>
+                    </div>
+                    <div class="recWrap">
+                        <a href="/TheEntertainaroMultiplexScreen">
+                            <img src="https://prod-ripcut-delivery.disney-plus.net/v1/variant/disney/4B32D8CB7C0C358E9FF348FB0338AD13F9A5836808E9EF5FADD9DBDE52FC3CAD/scale?width=400&aspectRatio=1.78&format=jpeg" alt="My music story" />
+                        </a>
+                    </div>
+                </div>
+            </div>
+
+            <div class="recommends">
+                <h4>Originals</h4>
+                <div class="recommendedContent">
+                    <div class="recWrap">
+                        <a href="/TheEntertainaroTheatreVideo">
+                            <img src="https://prod-ripcut-delivery.disney-plus.net/v1/variant/disney/E486A02FA7B60669E77958D4FAE567AA5C9C57344006E1D1ADFC080719545166/badging?width=400&aspectRatio=1.78&format=jpeg&label=originals" alt="Soul" />
+                        </a>
+                    </div>
+                    <div class="recWrap">
+                        <a href="/TheEntertainaroTheatreVideo">
+                            <img src="https://prod-ripcut-delivery.disney-plus.net/v1/variant/disney/CC08686E87BDB2D83A46C9608CB2F43018381A82608C380649351A00ED0D2919/badging?width=400&aspectRatio=1.78&format=jpeg&label=originals" alt="Assembled" />
+                        </a>
+                    </div>
+                    <div class="recWrap">
+                        <a href="/TheEntertainaroTheatreVideo">
+                            <img src="https://prod-ripcut-delivery.disney-plus.net/v1/variant/disney/A13BEC78ACF76FC91A94A1595A62A42CC26DFC6259332C74E061ADA379024E5C/badging?width=400&aspectRatio=1.78&format=jpeg&label=originals" alt="Burrow" />
+                        </a>
+                    </div>
+                    <div class="recWrap">
+                        <a href="/TheEntertainaroTheatreVideo">
+                            <img src="https://prod-ripcut-delivery.disney-plus.net/v1/variant/disney/F8D1A6FD00ED479CC5E2E5C3E85F10EB05550748BD3C0FE76756614071968541/badging?width=400&aspectRatio=1.78&format=jpeg&label=originals" alt="Legends" />
+                        </a>
+                    </div>
+                </div>
+            </div>
+
+            <div class="recommends">
+                <h4>Trending</h4>
+                <div class="recommendedContent">
+                    <div class="recWrap">
+                        <a href="/TheEntertainaroTheatreVideo">
+                            <img src="https://prod-ripcut-delivery.disney-plus.net/v1/variant/disney/0ECD36DD35658155915685271440833C29ED87E788CF8AE111AA6BCA6B939C37/scale?width=400&aspectRatio=1.78&format=jpeg" alt="Tangled" />
+                        </a>
+                    </div>
+                    <div class="recWrap">
+                        <a href="/TheEntertainaroTheatreVideo">
+                            <img src="https://prod-ripcut-delivery.disney-plus.net/v1/variant/disney/501783804F435A386DBC4736F529A8EF664B1817CCB0B552E52D825B85B0A97B/scale?width=400&aspectRatio=1.78&format=jpeg" alt="Moana" />
+                        </a>
+                    </div>
+                    <div class="recWrap">
+                        <a href="/TheEntertainaroTheatreVideo">
+                            <img src="https://prod-ripcut-delivery.disney-plus.net/v1/variant/disney/6EA416AD3B15FCC1BADC817A932A57FFF707556DB2233FFCB4CFEB7C8EEDE23C/scale?width=400&aspectRatio=1.78&format=jpeg" alt="The Simpsons" />
+                        </a>
+                    </div>
+                    <div class="recWrap">
+                        <a href="/TheEntertainaroTheatreVideo">
+                            <img src="https://prod-ripcut-delivery.disney-plus.net/v1/variant/disney/509E4D9F0BF98A9DC4CDD38954380782F6AB2664E503CC7652A37D18D06666BF/scale?width=400&aspectRatio=1.78&format=jpeg" alt="Mickey Mouse" />
+                        </a>
+                    </div>
+                </div>
+                <div class="footer-bottom">
+                    <p>Copyright &copy; All Right Reserved | Designed <span>By TheEntertainaro</span> 2022</p>
+                </div>
+            </div>
+        </main>
+
+        <script src="https://code.jquery.com/jquery-3.6.0.min.js" integrity="sha256-/xUj+3OJU5yExlq6GSYGSHk7tPXikynS7ogEvDej/m4=" crossorigin="anonymous"></script>
+        <script src="https://unpkg.com/flickity@2/dist/flickity.pkgd.min.js"></script>
+
+    </body>
+</html>

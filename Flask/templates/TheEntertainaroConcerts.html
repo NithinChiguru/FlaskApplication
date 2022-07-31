@@ -1,0 +1,430 @@
+<!DOCTYPE html>
+<html lang="en">
+	<head>
+		<meta charset="UTF-8">
+		<meta name="viewport" content="width=device-width, initial-scale=1.0">
+		<meta http-equiv="X-UA-Compatible" content="ie=edge">
+		<link
+			rel="stylesheet"
+			href="https://use.fontawesome.com/releases/v5.12.0/css/all.css"
+			integrity="sha384-REHJTs1r2ErKBuJB0fCK99gCYsVjwxHrSU0N7I1zl9vZbggVJXRMsv/sLlOAGb4M"
+			crossorigin="anonymous"
+		/>
+		<title>TheEntertainaro's CONCERTS</title>
+		<link rel="icon" href="static/TheEntertainaro.png">
+
+		<!--Session Management-->
+		<script type="text/javascript">
+			var IdealTimeOut = 300;
+			var idleSecondsTimer = null;
+			var idleSecondsCounter = 0;
+			document.onclick = function () { idleSecondsCounter = 0; };
+			document.onmousemove = function () { idleSecondsCounter = 0; };
+			document.onkeypress = function () { idleSecondsCounter = 0; };
+			idleSecondsTimer = window.setInterval(CheckIdleTime, 1000);
+
+			function CheckIdleTime()
+			{
+				idleSecondsCounter++;
+				var oPanel = document.getElementById("timeOut");
+				if (oPanel)
+				{
+					oPanel.innerHTML = (IdealTimeOut - idleSecondsCounter);
+				}
+				if (idleSecondsCounter >= IdealTimeOut)
+				{
+					window.clearInterval(idleSecondsTimer);
+					alert("Your Session has expired. Please login again.");
+					window.location = "http://127.0.0.1:5000/login";
+				}
+			}
+		</script>
+	</head>
+
+	<style>
+			@import url('https://fonts.googleapis.com/css?family=Montserrat:400,800&display=swap');
+
+			:root
+			{
+				--clr-primary: #F6F5F7;
+				--clr-secondary: #FF4B2B;
+				--clr-background: #DDD;
+				--clr-white: #FFF;
+			}
+
+			*
+			{
+				margin: 0;
+				padding: 0;
+				box-sizing: border-box;
+			}
+
+			html
+			{
+				font-size: 62.5%;
+			}
+
+			body
+			{
+				font-family: 'Montserrat', sans-serif;
+				background: var(--clr-primary);
+				display: flex;
+				flex-direction: column;
+				justify-content: center;
+				align-items: center;
+				height: 800px;
+			}
+
+			h1
+			{
+				font-size: 3rem;
+				font-weight: bold;
+			}
+
+			p
+			{
+				font-size: 1.4rem;
+				font-weight: 100;
+				line-height: 2rem;
+				letter-spacing: .05rem;
+				margin: 2em 0 3em;
+			}
+
+			span
+			{
+				font-size: 1.2rem;
+			}
+
+			a
+			{
+				color: #333;
+				font-size: 1.4rem;
+				text-decoration: none;
+				margin: 1.5rem 0;
+			}
+
+			.container
+			{
+				background: var(--clr-white);
+				position: relative;
+				overflow: hidden;
+				width: 100%;
+				height: 100%;
+			}
+
+			.form-container
+			{
+				position: absolute;
+				height: 100%;
+				transition: all 0.6s ease-in-out;
+			}
+
+			.sign-in-container
+			{
+				top: 0;
+				height: 50%;
+				width: 100%;
+				z-index: 2;
+			}
+
+			.sign-up-container
+			{
+				top: 0;
+				height: 50%;
+				width: 100%;
+				opacity: 0;
+				z-index: 1;
+			}
+
+			.form-container form
+			{
+				background: var(--clr-white);
+				display: flex;
+				flex-direction: column;
+				padding: 0 6rem;
+				height: 100%;
+				justify-content: center;
+				align-items: center;
+				text-align: center;
+			}
+
+			.social-container
+			{
+				margin: 2rem 0;
+			}
+
+			.social-container a
+			{
+				border: 1px solid var(--clr-background);
+				border-radius: 50%;
+				display: inline-flex;
+				justify-content: center;
+				align-items: center;
+				margin: 0 .5rem;
+				height: 40px;
+				width: 40px;
+			}
+
+			.form-container input
+			{
+				background: var(--clr-background);
+				border: none;
+				padding: 1rem 1.2rem;
+				margin: .6rem 0;
+				width: 100%;
+			}
+
+			button
+			{
+				border-radius: 20px;
+				border: 1px solid var(--clr-secondary);
+				background: var(--clr-secondary);
+				color: var(--clr-white);
+				font-size: 1.2rem;
+				font-weight: bold;
+				padding: 1.2rem 5rem;
+				letter-spacing: .1rem;
+				text-transform: uppercase;
+				transition: transform 80ms ease-in;
+			}
+
+			button:active
+			{
+				transform: scale(0.95)
+			}
+
+			button:focus
+			{
+				outline: none;
+			}
+
+			button.ghost
+			{
+				background: transparent;
+				border-color: var(--clr-white);
+			}
+
+			.overlay-container
+			{
+				position: absolute;
+				bottom: 0;
+				width: 100%;
+				height: 50%;
+				overflow: hidden;
+				transition: transform 0.6s ease-in-out;
+				z-index: 100;
+			}
+
+			.overlay
+			{
+				/*For legacy browsers */
+				background-color: var(--clr-secondary);
+				background: linear-gradient(to right, #FF4B2B, #FF416C) no-repeat 0 0 / cover;
+				color: var(--clr-white);
+				position: relative;
+				top: -100%;
+				width: 100%;
+				height: 200%;
+				transform: translateY(0);
+				transition: transform 0.6s ease-in-out;
+			}
+
+			.overlay-panel
+			{
+				position: absolute;
+				display: flex;
+				flex-direction: column;
+				justify-content: center;
+				align-items: center;
+				padding: 0 4rem;
+				height: 50%;
+				width: 100%;
+				text-align: center;
+				transform: translateY(0);
+				transition: transform 0.6s ease-in-out;
+			}
+
+			.overlay-right
+			{
+				bottom: 0;
+				transform: translateY(0);
+			}
+
+			.overlay-left
+			{
+				transform: translateY(-20%);
+			}
+
+
+			/* Animation */
+
+			/* Move sign in to the right */
+			.container.right-panel-active .sign-in-container
+			{
+				transform: translateY(100%);
+			}
+
+			/* Move overlay to left */
+			.container.right-panel-active .overlay-container
+			{
+				transform: translateY(-100%);
+			}
+
+			/* Bring sign up over sign in */
+			.container.right-panel-active .sign-up-container
+			{
+				transform: translateY(100%);
+				opacity: 1;
+				z-index: 5;
+			}
+
+			/* Move overlay back to right */
+			.container.right-panel-active .overlay
+			{
+				transform: translateY(50%);
+			}
+
+			/* Sliding effect left */
+			.container.right-panel-active .overlay-left
+			{
+				transform: translateY(0);
+			}
+
+			/* Sliding effect right */
+			.container.right-panel-active .overlay-right
+			{
+				transform: translateY(20%);
+			}
+
+			@media only screen and (min-width: 961px)
+			{
+				body
+				{
+					height: 100vh;
+				}
+
+				.container
+				{
+					border-radius: 10px;
+					box-shadow: 0 14px 28px rgba(0, 0, 0, 0.25), 0 10px 10px rgba(0, 0, 0, 0.22);
+					width: 768px;
+					max-width: 100%;
+					height: 480px;
+				}
+
+				.sign-in-container
+				{
+					left: 0;
+					width: 50%;
+					height: 100%;
+				}
+
+				.sign-up-container
+				{
+					left: 0;
+					width: 50%;
+					height: 100%;
+				}
+
+				.overlay-container
+				{
+					left: 50%;
+					width: 50%;
+					height: 100%;
+				}
+
+				.overlay
+				{
+					top: 0;
+					left: -100%;
+					width: 200%;
+					height: 100%;
+					transform: translateX(0);
+				}
+
+				.overlay-panel
+				{
+					height: 100%;
+					width: 50%;
+					transform: translateX(0);
+				}
+
+				.overlay-right
+				{
+					right: 0;
+					transform: translateX(0);
+				}
+
+				.overlay-left
+				{
+					transform: translateX(-20%);
+				}
+
+				/* Animation */
+
+				/* Move sign in to the right */
+				.container.right-panel-active .sign-in-container
+				{
+					transform: translateX(100%);
+				}
+
+				/* Move overlay to left */
+				.container.right-panel-active .overlay-container
+				{
+					transform: translateX(-100%);
+				}
+
+				/* Bring sign up over sign in */
+				.container.right-panel-active .sign-up-container
+				{
+					transform: translateX(100%);
+				}
+
+				/* Move overlay back to right */
+				.container.right-panel-active .overlay
+				{
+					transform: translateX(50%);
+				}
+
+				/* Sliding effect left */
+				.container.right-panel-active .overlay-left
+				{
+					transform: translateX(0);
+				}
+
+				/* Sliding effect right */
+				.container.right-panel-active .overlay-right
+				{
+					transform: translateX(20%);
+				}
+			}
+	</style>
+	<body>
+		<div class="container" id="container">
+			<div class="form-container sign-in-container">
+				<form method="POST">
+					<h1 style="font-size:25px">TheEntertainaro's CONCERTS</h1>
+					<div>
+						<input type="text" name="username" placeholder="Username" required/>
+						<input type="email" name="email" placeholder="Email" required/>
+						<input type="tel" name="phone" placeholder="Phone" placeholder="+91" pattern="[0-9]{10}" required/>
+						<input type="date" name="date" placeholder="Concert date" min="2022-04-30" required/>
+						<input type="time" name="time" placeholder="Concert start time"  required/>
+						<input type="text" name="message" placeholder="Brief about the Entertainment Event" cols="20" rows="10" required/>
+					</div>
+					<button type="submit">Send</button>
+				</form>
+			</div>
+
+			<div class="overlay-container">
+				<div class="overlay">
+					<div class="overlay-panel overlay-right">
+						<h1>Hello, USER!</h1>
+						<p>Enter your details and start journey with TheEntertainaro Concerts</p>
+						<form action="/"><button class="ghost" id="knowmore" >Sign out</button></form>
+					</div>
+				</div>
+			</div>
+		</div>
+    </body>
+</html>

@@ -1,0 +1,1180 @@
+<!DOCTYPE html>
+<html lang="en">
+    <head>
+        <meta charset="UTF-8">
+        <title>TheEntertainaroTHEATRE</title>
+        <link rel="icon" href="static/TheEntertainaro.png">
+        <meta name="viewport" content="width=device-width, initial-scale=1">
+
+
+        <script type="text/javascript">
+            var IdealTimeOut = 300;
+            var idleSecondsTimer = null;
+            var idleSecondsCounter = 0;
+            document.onclick = function () { idleSecondsCounter = 0; };
+            document.onmousemove = function () { idleSecondsCounter = 0; };
+            document.onkeypress = function () { idleSecondsCounter = 0; };
+            idleSecondsTimer = window.setInterval(CheckIdleTime, 1000);
+
+            function CheckIdleTime()
+            {
+                idleSecondsCounter++;
+                var oPanel = document.getElementById("timeOut");
+
+                if (oPanel)
+                {
+                    oPanel.innerHTML = (IdealTimeOut - idleSecondsCounter);
+                }
+
+                if (idleSecondsCounter >= IdealTimeOut)
+                {
+                    window.clearInterval(idleSecondsTimer);
+                    alert("Your Session has expired. Please login again.");
+                    window.location = "http://127.0.0.1:5000/login";
+                }
+            }
+        </script>
+    </head>
+
+    <style>
+        html
+        {
+            scroll-behavior: smooth;
+        }
+
+        *
+        {
+            box-sizing: border-box;
+        }
+
+        body
+        {
+            background-color: #040714;
+            color: #f9f9f9;
+            font-family: Avenir-Roman, sans-serif;
+            margin: 0;
+            padding: 0;
+        }
+
+        a
+        {
+            color: #f9f9f9;
+            text-decoration: none;
+        }
+
+        .footer-body
+        {
+            width: 90%;
+            margin: auto;
+            display: flex;
+            justify-content: space-around;
+        }
+
+        .footer-logo
+        {
+            height: 12vh;
+            background-color: #FEC53A;
+            color: #000;
+            line-height: 1.7rem;
+        }
+
+        ul h3
+        {
+            color: #fff;
+            font-weight: 450;
+        }
+
+        ul li
+        {
+            list-style: none;
+            line-height: 2.5rem;
+        }
+
+        ul li a
+        {
+            text-decoration: none;
+            color: #fff;
+        }
+
+        ul li a .fab
+        {
+            font-size: 1.2rem;
+            color: #FEC53A;
+            margin-right: 15px;
+        }
+
+        ul li a:hover
+        {
+            color: #FEC53A;
+        }
+
+        .footer-bottom
+        {
+            width: 100%;
+            height: 7vh;
+            background: #1B1919;
+            color: #fff;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            font-size: 1rem;
+        }
+
+        .footer-bottom span
+        {
+            color: #FEC53A;
+            font-weight: bold;
+        }
+
+        nav
+        {
+            position: fixed;
+            top: 0;
+            left: 0;
+            right: 0;
+            height: 70px;
+            background-color: #090b13;
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            padding: 0 36px;
+            letter-spacing: 16px;
+            z-index: 3;
+        }
+
+        .navLogo
+        {
+            padding: 0;
+            width: 80px;
+            margin-top: 4px;
+            max-height: 70px;
+            font-size: 0;
+            display: inline-block;
+        }
+
+        .navLogo img
+        {
+            display: block;
+            width: 100%;
+        }
+
+        .login
+        {
+            background-color: rgba(0, 0, 0, 0.6);
+            padding: 8px 16px;
+            text-transform: uppercase;
+            letter-spacing: 1.5px;
+            border: 1px solid #f9f9f9;
+            border-radius: 4px;
+            transition: all .2s ease 0s;
+        }
+
+        .login:hover
+        {
+            background-color: #f9f9f9;
+            color: #000;
+            border-color: transparent;
+        }
+
+        .landing
+        {
+            overflow: hidden;
+            display: flex;
+            flex-direction: column;
+            text-align: center;
+            height: 100vh;
+        }
+
+        .landingContent
+        {
+            margin-bottom: 10vw;
+            width: 100%;
+            position: relative;
+            min-height: 100vh;
+            box-sizing: border-box;
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            flex-direction: column;
+            padding: 80px 40px;
+            height: 100%;
+        }
+
+        .landingBgImg
+        {
+            height: 100%;
+            background-position: top;
+            background-size: cover;
+            background-repeat: no-repeat;
+            background-image: url("/assets/images/login-background.jpg");
+            position: absolute;
+            top: 0;
+            right: 0;
+            left: 0;
+            z-index: -1;
+        }
+
+        .cta
+        {
+            max-width: 650px;
+            display: flex;
+            flex-direction: column;
+            width: 100%;
+        }
+
+        .ctaLogoOne
+        {
+            margin-bottom: 12px;
+            max-width: 600px;
+            min-height: 1px;
+            display: block;
+            width: 100%;
+        }
+
+        .landingSignUp
+        {
+            font-weight: bold;
+            color: #f9f9f9;
+            background-color: #0063e5;
+            margin-bottom: 12px;
+            width: 100%;
+            letter-spacing: 1.5px;
+            font-size: 18px;
+            padding: 16.5px 0;
+            border: 1px solid transparent;
+            border-radius: 4px;
+        }
+
+        .landingSignUp:hover
+        {
+            background-color: #0483ee;
+        }
+
+        .landingDescription
+        {
+            color: hsla(0, 0%, 95.3%, 1);
+            font-size: 11px;
+            margin: 0 0 24px;
+            line-height: 1.5;
+            letter-spacing: 1.5px;
+        }
+
+        .ctaLogoTwo
+        {
+            max-width: 600px;
+            margin-bottom: 20px;
+            display: inline-block;
+            vertical-align: bottom;
+            width: 100%;
+        }
+
+        @media only screen and (min-width: 768px)
+        {
+            body
+            {
+                font-size: 16px;
+            }
+        }
+
+        @media only screen and (min-width: 480px) and (max-width: 768px)
+        {
+            body
+            {
+                font-size: 15px;
+            }
+        }
+
+        @media only screen and (max-width: 479px)
+        {
+            body
+            {
+                font-size: 14px;
+            }
+        }
+
+        html
+        {
+            scroll-behavior: smooth;
+        }
+
+        *
+        {
+            box-sizing: border-box;
+        }
+
+        body
+        {
+            background-color: #040714;
+            color: #f9f9f9;
+            font-family: Avenir-Roman, sans-serif;
+            margin: 0;
+            padding: 0;
+        }
+
+        a
+        {
+            color: #f9f9f9;
+            text-decoration: none;
+        }
+
+        nav
+        {
+            position: fixed;
+            top: 0;
+            left: 0;
+            right: 0;
+            height: 70px;
+            background-color: #090b13;
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            padding: 0 36px;
+            letter-spacing: 16px;
+            z-index: 3;
+        }
+
+        .navLogo
+        {
+            padding: 0;
+            width: 80px;
+            margin-top: 4px;
+            max-height: 70px;
+            font-size: 0;
+            display: inline-block;
+        }
+
+        .navLogo img
+        {
+            display: block;
+            width: 100%;
+        }
+
+        .navMenu
+        {
+            align-items: center;
+            display: flex;
+            flex-flow: row nowrap;
+            height: 100%;
+            justify-content: flex-end;
+            margin: 0;
+            padding: 0;
+            position: relative;
+            margin-right: auto;
+            margin-left: 25px;
+        }
+
+        .navMenu a
+        {
+            display: flex;
+            align-items: center;
+            padding: 0 12px;
+        }
+
+        .navMenu a img
+        {
+            height: 20px;
+            min-width: 20px;
+            width: 20px;
+            z-index: auto;
+        }
+
+        .navMenu a span
+        {
+            color: rgb(249, 249, 249);
+            font-size: 13px;
+            letter-spacing: 1.42px;
+            line-height: 1.08;
+            padding: 2px 0px;
+            white-space: nowrap;
+            position: relative;
+        }
+
+        .navMenu a span::before
+        {
+            background-color: rgb(249, 249, 249);
+            border-radius: 0px 0px 4px 4px;
+            bottom: -6px;
+            content: "";
+            height: 2px;
+            left: 0px;
+            opacity: 0;
+            position: absolute;
+            right: 0px;
+            transform-origin: left center;
+            transform: scaleX(0);
+            transition: all 250ms cubic-bezier(0.25, 0.46, 0.45, 0.94) 0s;
+            visibility: hidden;
+            width: auto;
+        }
+
+        .navMenu a:hover span::before
+        {
+            transform: scaleX(1);
+            visibility: visible;
+            opacity: 1 !important;
+        }
+
+        .signOut
+        {
+            position: relative;
+            height: 48px;
+            width: 48px;
+            display: flex;
+            cursor: pointer;
+            align-items: center;
+            justify-content: center;
+        }
+
+        .signOut .userImg
+        {
+            border-radius: 50%;
+            width: 100%;
+            height: 100%;
+        }
+
+        .signOut .dropDown
+        {
+            position: absolute;
+            top: 48px;
+            right: 0;
+            background: rgb(19, 19, 19);
+            border: 1px solid rgba(151, 151, 151, 0.34);
+            border-radius: 4px;
+            box-shadow: rgb(0 0 0 / 50%) 0px 0px 18px 0px;
+            padding: 10px;
+            font-size: 14px;
+            letter-spacing: 3px;
+            width: 100px;
+            opacity: 0;
+        }
+
+        .signOut:hover .dropDown
+        {
+            opacity: 1;
+            width: 100px;
+            transition-duration: 1s;
+        }
+
+        main
+        {
+            position: relative;
+            min-height: calc(100vh - 250px);
+            overflow-x: hidden;
+            display: block;
+            top: 72px;
+            padding: 0 calc(3.5vw + 5px);
+        }
+
+        main::after
+        {
+            background: url("../assets/images/home-background.png") center center / cover no-repeat fixed;
+            content: "";
+            position: absolute;
+            inset: 0px;
+            opacity: 1;
+            z-index: -1;
+        }
+
+        .carousel
+        {
+            background: transparent;
+            height: 100%;
+            margin: 0 -4.6875vw;
+        }
+
+        .carousel button
+        {
+            opacity: 0;
+            height: 25px;
+            width: 25px;
+            z-index: 1;
+        }
+
+        .carousel button:hover
+        {
+            opacity: 1;
+            transition: opacity 0.2s ease 0s;
+        }
+
+        .carousel ol li
+        {
+            background: rgb(150, 158, 171) !important;
+        }
+
+        .carousel ol .is-selected
+        {
+            background: white !important;
+        }
+
+        .carousel-cell
+        {
+            width: 90%;
+            border-radius: 4px;
+            cursor: pointer;
+            position: relative;
+            counter-increment: gallery-cell;
+        }
+
+        .carousel-cell a
+        {
+            border-radius: 4px;
+            box-shadow: rgb(0 0 0 / 69%) 0px 26px 30px -10px, rgb(0 0 0 / 73%) 0px 16px 10px -10px;
+            cursor: pointer;
+            display: block;
+            position: relative;
+            padding: 4px;
+        }
+
+        .carousel-cell a img
+        {
+            width: 100%;
+            height: 100%;
+        }
+
+        .carousel-cell a:hover
+        {
+            padding: 0;
+            border: 4px solid rgba(249, 249, 249, 0.8);
+            transition-duration: 300ms;
+        }
+
+        .viewers
+        {
+            margin-top: 30px;
+            padding: 30px 0px 26px;
+            display: grid;
+            grid-gap: 25px;
+            gap: 25px;
+            grid-template-columns: repeat(5, minmax(0, 1fr));
+        }
+
+        .viewerWrap
+        {
+            padding-top: 56.25%;
+            border-radius: 10px;
+            box-shadow: rgb(0 0 0 / 69%) 0px 26px 30px -10px, rgb(0 0 0 / 73%) 0px 16px 10px -10px;
+            cursor: pointer;
+            overflow: hidden;
+            position: relative;
+            transition: all 250ms cubic-bezier(0.25, 0.46, 0.45, 0.94) 0s;
+            border: 3px solid rgba(249, 249, 249, 0.1);
+        }
+
+        .viewerWrap img
+        {
+            inset: 0px;
+            display: block;
+            height: 100%;
+            object-fit: cover;
+            opacity: 1;
+            position: absolute;
+            transition: opacity 500ms ease-in-out 0s;
+            width: 100%;
+            z-index: 1;
+            top: 0;
+        }
+
+        .viewerWrap video
+        {
+            width: 100%;
+            height: 100%;
+            position: absolute;
+            top: 0px;
+            opacity: 0;
+            z-index: 0;
+        }
+
+        .viewerWrap:hover
+        {
+            box-shadow: rgb(0 0 0 / 69%) 0px 26px 30px -10px, rgb(0 0 0 / 73%) 0px 16px 10px -10px;
+            transform: scale(1.05);
+            border-color: rgba(249, 249, 249, 0.8);
+        }
+
+        .viewerWrap:hover video
+        {
+            opacity: 1;
+        }
+
+        .recommends
+        {
+            padding: 0 0 26px;
+        }
+
+        .recommendedContent
+        {
+            display: grid;
+            grid-gap: 25px;
+            gap: 25px;
+            grid-template-columns: repeat(4, minmax(0, 1fr));
+        }
+
+        .recWrap
+        {
+            padding-top: 56.25%;
+            border-radius: 10px;
+            box-shadow: rgb(0 0 0 / 69%) 0px 26px 30px -10px, rgb(0 0 0 / 73%) 0px 16px 10px -10px;
+            cursor: pointer;
+            overflow: hidden;
+            position: relative;
+            transition: all 250ms cubic-bezier(0.25, 0.46, 0.45, 0.94) 0s;
+            border: 3px solid rgba(249, 249, 249, 0.1);
+        }
+
+        .recWrap img
+        {
+            inset: 0px;
+            display: block;
+            height: 100%;
+            object-fit: cover;
+            opacity: 1;
+            position: absolute;
+            transition: opacity 500ms ease-in-out 0s;
+            width: 100%;
+            z-index: 1;
+            top: 0;
+        }
+
+        .recWrap:hover
+        {
+            box-shadow: rgb(0 0 0 / 69%) 0px 26px 30px -10px, rgb(0 0 0 / 73%) 0px 16px 10px -10px;
+            transform: scale(1.05);
+            border-color: rgba(249, 249, 249, 0.8);
+        }
+
+        @media only screen and (min-width: 768px)
+        {
+            body
+            {
+                font-size: 16px;
+            }
+        }
+
+        @media only screen and (min-width: 480px) and (max-width: 768px)
+        {
+            body
+            {
+                font-size: 15px;
+            }
+
+            .viewers
+            {
+                grid-template-columns: repeat(1, minmax(0, 1fr));
+            }
+
+            .recommendedContent
+            {
+                grid-template-columns: repeat(2, minmax(0, 1fr));
+            }
+        }
+
+        @media only screen and (max-width: 479px)
+        {
+            body
+            {
+                font-size: 14px;
+            }
+
+            .viewers
+            {
+                grid-template-columns: repeat(1, minmax(0, 1fr));
+            }
+
+            .recommendedContent
+            {
+                grid-template-columns: repeat(2, minmax(0, 1fr));
+            }
+        }
+
+        html
+        {
+            scroll-behavior: smooth;
+        }
+
+        *
+        {
+            box-sizing: border-box;
+        }
+
+        body
+        {
+            background-color: #040714;
+            color: #f9f9f9;
+            font-family: Avenir-Roman, sans-serif;
+            margin: 0;
+            padding: 0;
+        }
+
+        a
+        {
+            color: #f9f9f9;
+            text-decoration: none;
+        }
+
+        nav
+        {
+            position: fixed;
+            top: 0;
+            left: 0;
+            right: 0;
+            height: 70px;
+            background-color: #090b13;
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            padding: 0 36px;
+            letter-spacing: 16px;
+            z-index: 3;
+        }
+
+        .navLogo
+        {
+            padding: 0;
+            width: 80px;
+            margin-top: 4px;
+            max-height: 70px;
+            font-size: 0;
+            display: inline-block;
+        }
+
+        .navLogo img
+        {
+            display: block;
+            width: 100%;
+        }
+
+        .navMenu
+        {
+            align-items: center;
+            display: flex;
+            flex-flow: row nowrap;
+            height: 100%;
+            justify-content: flex-end;
+            margin: 0;
+            padding: 0;
+            position: relative;
+            margin-right: auto;
+            margin-left: 25px;
+        }
+
+        .navMenu a {
+            display: flex;
+            align-items: center;
+            padding: 0 12px;
+        }
+
+        .navMenu a img
+        {
+            height: 20px;
+            min-width: 20px;
+            width: 20px;
+            z-index: auto;
+        }
+
+        .navMenu a span
+        {
+            color: rgb(249, 249, 249);
+            font-size: 13px;
+            letter-spacing: 1.42px;
+            line-height: 1.08;
+            padding: 2px 0px;
+            white-space: nowrap;
+            position: relative;
+        }
+
+        .navMenu a span::before
+        {
+            background-color: rgb(249, 249, 249);
+            border-radius: 0px 0px 4px 4px;
+            bottom: -6px;
+            content: "";
+            height: 2px;
+            left: 0px;
+            opacity: 0;
+            position: absolute;
+            right: 0px;
+            transform-origin: left center;
+            transform: scaleX(0);
+            transition: all 250ms cubic-bezier(0.25, 0.46, 0.45, 0.94) 0s;
+            visibility: hidden;
+            width: auto;
+        }
+
+        .navMenu a:hover span::before
+        {
+            transform: scaleX(1);
+            visibility: visible;
+            opacity: 1 !important;
+        }
+
+        .signOut
+        {
+            position: relative;
+            height: 48px;
+            width: 48px;
+            display: flex;
+            cursor: pointer;
+            align-items: center;
+            justify-content: center;
+        }
+
+        .signOut .userImg
+        {
+            border-radius: 50%;
+            width: 100%;
+            height: 100%;
+        }
+
+        .signOut .dropDown
+        {
+            position: absolute;
+            top: 48px;
+            right: 0;
+            background: rgb(19, 19, 19);
+            border: 1px solid rgba(151, 151, 151, 0.34);
+            border-radius: 4px;
+            box-shadow: rgb(0 0 0 / 50%) 0px 0px 18px 0px;
+            padding: 10px;
+            font-size: 14px;
+            letter-spacing: 3px;
+            width: 100px;
+            opacity: 0;
+        }
+
+        .signOut:hover .dropDown
+        {
+            opacity: 1;
+            transition-duration: 1s;
+        }
+
+        .detail
+        {
+            position: relative;
+            min-height: calc(100vh-250px);
+            overflow-x: hidden;
+            display: block;
+            top: 72px;
+            padding: 0 calc(3.5vw + 5px);
+        }
+
+        .detailBgImg
+        {
+            left: 0px;
+            opacity: 0.8;
+            position: fixed;
+            right: 0px;
+            top: 0px;
+            z-index: -1;
+        }
+
+        .detailBgImg img
+        {
+            width: 100vw;
+            height: 100vh;
+        }
+
+        .detailImgTitle
+        {
+            align-items: flex-end;
+            display: flex;
+            -webkit-box-pack: start;
+            justify-content: flex-start;
+            margin: 0px auto;
+            height: 30vw;
+            min-height: 170px;
+            padding-bottom: 24px;
+            width: 100%;
+        }
+
+        .detailImgTitle img
+        {
+            max-width: 600px;
+            min-width: 200px;
+            width: 35vw;
+        }
+
+        .contentMeta
+        {
+            max-width: 874px;
+        }
+
+        .controls
+        {
+            align-items: center;
+            display: flex;
+            flex-flow: row nowrap;
+            margin: 24px 0px;
+            min-height: 56px;
+        }
+
+        .player,
+        .trailer
+        {
+            font-size: 15px;
+            margin: 0px 22px 0px 0px;
+            padding: 0px 24px;
+            height: 56px;
+            border-radius: 4px;
+            cursor: pointer;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            letter-spacing: 1.8px;
+            text-align: center;
+            text-transform: uppercase;
+            background: rgb (249, 249, 249);
+            border: none;
+            color: rgb(0, 0, 0);
+        }
+
+        .player img,
+        .trailer img
+        {
+            width: 32px;
+        }
+
+        .player:hover,
+        .trailer:hover
+        {
+            background: rgb(198, 198, 198);
+        }
+
+        .trailer
+        {
+            background: rgba(0, 0, 0, 0.3);
+            border: 1px solid rgb(249, 249, 249);
+            color: rgb(249, 249, 249);
+        }
+
+        .addList
+        {
+            margin-right: 16px;
+            height: 44px;
+            width: 44px;
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            background-color: rgba(0, 0, 0, 0.6);
+            border-radius: 50%;
+            border: 2px solid white;
+            cursor: pointer;
+        }
+
+        .addList span
+        {
+            background-color: rgb(249, 249, 249);
+            display: inline-block;
+        }
+
+        .addList span:first-child
+        {
+            height: 2px;
+            transform: translate(1px, 0px) rotate(0deg);
+            width: 16px;
+        }
+
+        .addList span:nth-child(2)
+        {
+            height: 16px;
+            transform: translateX(-8px) rotate(0deg);
+            width: 2px;
+        }
+
+        .groupWatch
+        {
+            height: 44px;
+            width: 44px;
+            border-radius: 50%;
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            cursor: pointer;
+            background: white;
+        }
+
+        .groupWatch div
+        {
+            height: 40px;
+            width: 40px;
+            background: rgb(0, 0, 0);
+            border-radius: 50%;
+        }
+
+        .groupWatch div img
+        {
+            width: 100%;
+        }
+
+        .subTitle
+        {
+            color: rgb(249, 249, 249);
+            font-size: 15px;
+            min-height: 20px;
+        }
+
+        .description
+        {
+            line-height: 1.4;
+            font-size: 20px;
+            padding: 16px 0px;
+            color: rgb(249, 249, 249);
+        }
+
+        @media only screen and (min-width: 768px)
+        {
+            body
+            {
+                font-size: 16px;
+            }
+        }
+
+        @media only screen and (min-width: 480px) and (max-width: 768px)
+        {
+            body
+            {
+                font-size: 15px;
+            }
+
+            .detalBgImg img
+            {
+                width: initial;
+            }
+
+            .player,
+            .trailer
+            {
+                height: 45px;
+                padding: 0px 12px;
+                font-size: 12px;
+                margin: 0px 10px 0px 0px;
+            }
+
+
+
+            .player img,
+            .trailer img
+            {
+                width: 25px;
+            }
+
+            .subTitle
+            {
+                font-size: 12px;
+            }
+
+            .description
+            {
+                font-size: 14px;
+            }
+        }
+
+        @media only screen and (max-width: 479px)
+        {
+            body
+            {
+                font-size: 14px;
+            }
+
+            .detalBgImg img
+            {
+                width: initial;
+            }
+
+            .player,
+            .trailer
+            {
+                height: 45px;
+                padding: 0px 12px;
+                font-size: 12px;
+                margin: 0px 10px 0px 0px;
+            }
+
+            .player img,
+            .trailer img
+            {
+                width: 25px;
+            }
+
+            .subTitle
+            {
+                font-size: 12px;
+            }
+
+            .description
+            {
+                font-size: 14px;
+            }
+        }
+    </style>
+
+
+    <body>
+
+        <nav>
+            <a class="navLogo" href="/TheEntertainaroMultiplex">
+                <img src="static/TheEntertainaro.png" alt="Disney+" />
+            </a>
+            <div class="navMenu">
+                <a href="/TheEntertainaroMultiplex">
+                    <img src="static/home-icon.svg" alt="HOME" />
+                    <span>HOME</span>
+                </a>
+                <a>
+                    <img src="static/search-icon.svg" alt="SEARCH" />
+                    <span>SEARCH</span>
+                </a>
+                <a>
+                    <img src="static/watchlist-icon.svg" alt="WATCHLIST" />
+                    <span>WATCHLIST</span>
+                </a>
+                <a>
+                    <img src="static/original-icon.svg" alt="ORIGINALS" />
+                    <span>ORIGINALS</span>
+                </a>
+                <a>
+                    <img src="static/movie-icon.svg" alt="MOVIES" />
+                    <span>MOVIES</span>
+                </a>
+                <a>
+                    <img src="static/series-icon.svg" alt="SERIES" />
+                    <span>SERIES</span>
+                </a>
+            </div>
+            <div class="signOut">
+                <img class="userImg" src="static/pic1.png" alt="avatar" />
+                <div class="dropDown">
+                    <a href="/login">Log Out</a>
+                </div>
+            </div>
+        </nav>
+
+        <div class="detail">
+            <video id="movie" width="1350px" height="650px" controls="controls"/>
+                <source src="static/movie.mkv" type="video/mp4">
+            </video>
+            <h1>Scam 1992 The Harshad Mehta Story</h1>
+            <div class="contentMeta">
+                <div class="controls">
+                    <a type="button" class="trailer" href="https://www.youtube.com/watch?v=ISORfez27og&ab_channel=SonyLIV" >
+                      <img src="static/play-icon-white.png" alt="" />
+                      <span>Play Trailer</span>
+                    </a>
+                </div>
+
+                <div class="description">
+                    ‘Scam’ is about the major scandals that shook India and are remembered as some of the most notorious crimes of the country. Set in 1980’s and 90’s Bombay, Scam 1992 follows the life of Harshad Mehta - the infamous “Bachchan of BSE”. It was a rags-to-riches story till financial journalist Sucheta Dalal exposed Harshad as the man behind India’s biggest financial scam. After his arrest, the stock market crashed and countless Indians lost all savings. For the first time, the CBI was compelled to launch an investigation into a financial crime. A corrupt financial system was revealed. Harshad eventually died in custody.
+                </div>
+                <div class="subTitle">
+                    <b>Cast:</b><p>Pratik Gandhi, Shreya Dhanwanthary, Sharib Hashmi</p>
+                    <b>Director:</b><p>Hansal Mehta</p>
+                    <b>Producer:</b><p>Sameer Nair, Deepak Segal, Indranil Chakraborty</p>
+                    <b>IMDB:</b><p>9.2/10</p>
+                </div>
+            </div>
+            <div class="footer-bottom">
+                <p>Copyright &copy; All Right Reserved | Designed <span>By TheEntertainaro</span> 2022</p>
+            </div>
+        </div>
+    </body>
+
+</html>
